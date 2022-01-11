@@ -1,7 +1,12 @@
 package ru.ztech.restclient.wb;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import ru.ztech.restclient.wb.impl.WbConfigUrl;
+import ru.ztech.restclient.wb.impl.WbFacadeImpl;
 import ru.ztech.restclient.wb.model.ReportSaleBySalesDto;
 
 /**
@@ -12,11 +17,17 @@ import ru.ztech.restclient.wb.model.ReportSaleBySalesDto;
  * 
  */
 public class WbFacadeTest {
-    
+
     @Test
-    void loadReportSaleBySalesSuccess() {
-        IWbFacade s = null;
-        ReportSaleBySalesDto data = new ReportSaleBySalesDto();
-        data.getRealizationreportId();
+    void loadReportSaleBySalesSuccessReal() {
+        WbConfigUrl configUrl = new WbConfigUrl();
+        IWbFacade facade = new WbFacadeImpl(configUrl);
+        String key = System.getProperty("wb.api.key");
+        
+        List<ReportSaleBySalesDto> list = facade.reportSaleBySales(key, LocalDate.parse("2021-12-01"), LocalDate.now(), 0, 0);
+        System.out.println("Result:\n");
+        for (ReportSaleBySalesDto reportSaleBySalesDto : list) {
+            System.out.println("\t" + reportSaleBySalesDto);
+        }
     }
 }
