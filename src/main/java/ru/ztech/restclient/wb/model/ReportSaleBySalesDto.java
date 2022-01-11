@@ -1,97 +1,137 @@
 package ru.ztech.restclient.wb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * ReportSaleBySalesDto
+ * Строка отчета о продажах по реализации
  *
- * @since version(11-01-2022)
- * @author Гончаров Никита 
+ * @since 0.1 (11-01-2022)
+ * @author Гончаров Никита
  * 
  */
 @Getter
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ReportSaleBySalesDto {
     
     // ~ Статические поля/инициализации =====================================================================
     
     // ~ Переменные(свойства) класса ========================================================================
+    @JsonProperty("realizationreport_id")
     /** Номер отчета */
     private String realizationreportId;
     /** Договор */
-    private String suppliercontract_code;
+    @JsonProperty("suppliercontract_code")
+    private String suppliercontractCode;
     /** Дата операции */
-    private String rr_dt;
+    @JsonProperty("rr_dt")
+    private String rrDt;
     /** Номер строки */
-    private String rrd_id;
+    @JsonProperty("rrd_id")
+    private String rrdId;
     /** номер поставки */
-    private String gi_id;
+    @JsonProperty("gi_id")
+    private String giId;
     /** Предмет */
-    private String subject_name;
+    @JsonProperty("subject_name")
+    private String subjectName;
     /** Артикул */
-    private String NM_id;
+    @JsonProperty("NM_id")
+    private String NMId;
     /** Бренд */
-    private String brand_name;
+    @JsonProperty("brand_name")
+    private String brandName;
     /** Артикул поставщика */
-    private String sa_name;
+    @JsonProperty("sa_name")
+    private String saName;
     /** Размер */
-    private String ts_name;
+    @JsonProperty("ts_name")
+    private String tsName;
     /** Баркод */
+    @JsonProperty("barcode")
     private String barcode;
     /** Тип документа */
-    private String doc_type_name;
+    @JsonProperty("doc_type_name")
+    private String docTypeName;
     /** Количество */
+    @JsonProperty("quantity")
     private String quantity;
     /** Ставка НДС */
+    @JsonProperty("nds")
     private String nds;
     /** Себестоимость Сумма */
-    private String cost_amount;
+    @JsonProperty("cost_amount")
+    private String costAmount;
     /** Цена розничная */
-    private String retail_price;
+    @JsonProperty("retail_price")
+    private String retailPrice;
     /** Сумма продаж(Возвратов) */
-    private String retail_amount;
+    @JsonProperty("retail_amount")
+    private String retailAmount;
     /** Сумма комиссии продаж */
-    private String retail_commission;
+    @JsonProperty("retail_commission")
+    private String retailCommission;
     /** Согласованная скидка */
-    private String sale_percent;
+    @JsonProperty("sale_percent")
+    private String salePercent;
     /** Процент комиссии */
-    private String commission_percent;
+    @JsonProperty("commission_percent")
+    private String commissionPercent;
     /** Вознаграждение покупателю */
-    private String customer_reward;
+    @JsonProperty("customer_reward")
+    private String customerReward;
     /** Вознаграждение поставщику */
-    private String supplier_reward;
+    @JsonProperty("supplier_reward")
+    private String supplierReward;
     /** Склад */
-    private String office_name;
+    @JsonProperty("office_name")
+    private String officeName;
     /** Обоснование для оплаты */
-    private String supplier_oper_name;
+    @JsonProperty("supplier_oper_name")
+    private String supplierOperName;
     /** Даты заказа */
-    private String order_dt;
+    @JsonProperty("order_dt")
+    private String orderDt;
     /** Дата продажи */
-    private String sale_dt;
+    @JsonProperty("sale_dt")
+    private String saleDt;
     /** ШК */
-    private String shk_id;
+    @JsonProperty("shk_id")
+    private String shkId;
     /** Цена розничная с учетом согласованной скидки */
-    private String retail_price_withdisc_rub;
+    @JsonProperty("retail_price_withdisc_rub")
+    private String retailPriceWithdiscRub;
     /** К перечислению поставщику */
-    private String for_pay;
+    @JsonProperty("for_pay")
+    private String forPay;
     /** К перечислению поставщику НДС */
-    private String for_pay_nds;
+    @JsonProperty("for_pay_nds")
+    private String forPayNds;
     /** Кол-во доставок */
-    private String delivery_amount;
+    @JsonProperty("delivery_amount")
+    private String deliveryAmount;
     /** Кол-во возвратов */
-    private String return_amount;
+    @JsonProperty("return_amount")
+    private String returnAmount;
     /** Стоимость логистики */
-    private String delivery_rub;
+    @JsonProperty("delivery_rub")
+    private String deliveryRub;
     /** Тип коробов */
-    private String gi_box_type_name;
+    @JsonProperty("gi_box_type_name")
+    private String giBoxTypeName;
     /** Согласованный продуктовый дисконт */
-    private String
-    product_discount_for_report;
+    @JsonProperty("product_discount_for_report")
+    private String productDiscountForReport;
     /** Промокод */
-    private String supplier_promo;
+    @JsonProperty("supplier_promo")
+    private String supplierPromo;
     /** Скидка постоянного покупателя */
-    private String supplier_spp;
+    @JsonProperty("supplier_spp")
+    private String supplierSpp;
     
     // ~ Конструктор ========================================================================================
     
