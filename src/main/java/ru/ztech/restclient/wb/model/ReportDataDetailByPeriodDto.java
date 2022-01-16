@@ -18,7 +18,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReportSaleBySalesDto {
+public class ReportDataDetailByPeriodDto {
     
     // ~ Статические поля/инициализации =====================================================================
     

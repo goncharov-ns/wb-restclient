@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ru.ztech.restclient.wb.model.ReportSaleBySalesDto;
+import ru.ztech.restclient.wb.model.ReportDataDetailByPeriodDto;
 
 /**
  * JsonDataTest
@@ -23,8 +23,8 @@ public class JsonDataTest {
     @Test
     void readDataSaleBySales() throws IOException {
         String data = IOUtils.toString(getClass().getResourceAsStream("/data/salebysales.json"), Charset.forName("UTF-8"));
-        ReportSaleBySalesDto[] myObjects = (new ObjectMapper()).readValue(data, ReportSaleBySalesDto[].class);
-        for (ReportSaleBySalesDto reportSaleBySalesDto : myObjects) {
+        ReportDataDetailByPeriodDto[] myObjects = (new ObjectMapper()).readValue(data, ReportDataDetailByPeriodDto[].class);
+        for (ReportDataDetailByPeriodDto reportSaleBySalesDto : myObjects) {
             System.out.println(reportSaleBySalesDto.getRrdId() + " = " + reportSaleBySalesDto.getBarcode() + " " + reportSaleBySalesDto.getSaleDt());
             Assertions.assertNotNull(reportSaleBySalesDto.getRrdId());
             Assertions.assertNotNull(reportSaleBySalesDto.getBarcode());

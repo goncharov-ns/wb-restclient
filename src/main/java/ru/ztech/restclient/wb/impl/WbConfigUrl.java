@@ -18,8 +18,24 @@ public class WbConfigUrl {
     // ~ Конструктор ========================================================================================
     
     // ~ Методы =============================================================================================
-    public String getReportSaleBySales() {
-        return "https://suppliers-stats.wildberries.ru/api/v1/supplier/reportDetailByPeriod?dateFrom={dateFrom}&key={key}&limit={limit}&rrdid={rrdid}&dateto={dateTo}";
+    public String getReportStocks() {
+        return getBaseWbUrl() + "stocks?dateFrom={dateFrom}&key={apiKey}";
+    }
+    
+    public String getReportOrders() {
+        return getBaseWbUrl() + "orders?dateFrom={dateFrom}&flag={flag}&key={apiKey}";
+    }
+    
+    public String getReportSales() {
+        return getBaseWbUrl() + "sales?dateFrom={dateFrom}&flag={flag}&key={apiKey}";
+    }
+    
+    public String getReportDetailByPeriod() {
+        return getBaseWbUrl() + "reportDetailByPeriod?dateFrom={dateFrom}&key={apiKey}&limit={limit}&rrdid={rrdid}&dateto={dateTo}";
+    }
+    
+    private String getBaseWbUrl() {
+        return "https://suppliers-stats.wildberries.ru/api/v1/supplier/";
     }
     
     // ~ Доступ к свойствам =================================================================================

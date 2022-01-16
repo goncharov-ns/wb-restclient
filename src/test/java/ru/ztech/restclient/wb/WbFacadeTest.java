@@ -7,7 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import ru.ztech.restclient.wb.impl.WbConfigUrl;
 import ru.ztech.restclient.wb.impl.WbFacadeImpl;
-import ru.ztech.restclient.wb.model.ReportSaleBySalesDto;
+import ru.ztech.restclient.wb.model.ReportDataDetailByPeriodDto;
+import ru.ztech.restclient.wb.model.ReportDataOrdersDto;
+import ru.ztech.restclient.wb.model.ReportDataSalesDto;
+import ru.ztech.restclient.wb.model.ReportDataStocksDto;
 
 /**
  * WbFacadeTest
@@ -17,16 +20,42 @@ import ru.ztech.restclient.wb.model.ReportSaleBySalesDto;
  * 
  */
 public class WbFacadeTest {
-
+    
+    private static final String KEY = System.getProperty("wb.api.key");
+    private static final IWbFacade facade = new WbFacadeImpl(new WbConfigUrl());
+    
     @Test
-    void loadReportSaleBySalesSuccessReal() {
-        WbConfigUrl configUrl = new WbConfigUrl();
-        IWbFacade facade = new WbFacadeImpl(configUrl);
-        String key = System.getProperty("wb.api.key");
-        
-        List<ReportSaleBySalesDto> list = facade.reportSaleBySales(key, LocalDate.parse("2021-12-01"), LocalDate.now(), 0, 0);
+    void loadReportDetailByPeriodSuccessReal() {
+        List<ReportDataDetailByPeriodDto> list = facade.reportDetailByPeriod(KEY, LocalDate.parse("2021-12-01"), LocalDate.now(), 0, 0);
         System.out.println("Result:\n");
-        for (ReportSaleBySalesDto reportSaleBySalesDto : list) {
+        for (ReportDataDetailByPeriodDto reportSaleBySalesDto : list) {
+            System.out.println("\t" + reportSaleBySalesDto);
+        }
+    }
+    
+    @Test
+    void loadReportDataSalesSuccessReal() {
+        List<ReportDataSalesDto> list = facade.reportDataSales(KEY, LocalDate.parse("2021-12-01"), 0);
+        System.out.println("Result:\n");
+        for (ReportDataSalesDto reportSaleBySalesDto : list) {
+            System.out.println("\t" + reportSaleBySalesDto);
+        }
+    }
+    
+    @Test
+    void loadReportDataOrdersSuccessReal() {
+        List<ReportDataOrdersDto> list = facade.reportDataOrders(KEY, LocalDate.parse("2021-12-01"), 0);
+        System.out.println("Result:\n");
+        for (ReportDataOrdersDto reportSaleBySalesDto : list) {
+            System.out.println("\t" + reportSaleBySalesDto);
+        }
+    }
+    
+    @Test
+    void loadReportDataStocksSuccessReal() {
+        List<ReportDataStocksDto> list = facade.reportDataStocks(KEY, LocalDate.parse("2021-12-01"));
+        System.out.println("Result:\n");
+        for (ReportDataStocksDto reportSaleBySalesDto : list) {
             System.out.println("\t" + reportSaleBySalesDto);
         }
     }
