@@ -3,6 +3,7 @@ package ru.ztech.restclient.wb;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ru.ztech.restclient.wb.impl.WbConfigUrl;
@@ -19,6 +20,7 @@ import ru.ztech.restclient.wb.model.ReportDataStocksDto;
  * @author Гончаров Никита 
  * 
  */
+@Disabled("Disabled until Run with Real ApiKey! Set as wb.api.key in System")
 public class WbFacadeTest {
     
     private static final String KEY = System.getProperty("wb.api.key");
