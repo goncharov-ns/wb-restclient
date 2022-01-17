@@ -13,6 +13,19 @@
     <artifactId>wb-restclient</artifactId>
     <version>0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
+	
+	<distributionManagement>
+		<repository>
+			<id>ztech-nexus</id>
+			<name>Nexus Releases Repository</name>
+			<url>http://192.168.198.10:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>ztech-nexus</id>
+			<name>Nexus Snapshots Repository</name>
+			<url>http://192.168.198.10:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
     <dependencies>
 		<dependency>
