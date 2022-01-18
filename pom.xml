@@ -18,12 +18,12 @@
         <repository>
             <id>ztech-nexus</id>
             <name>Nexus Releases Repository</name>
-            <url>http://192.168.198.10:8081/nexus/content/repositories/releases</url>
+            <url>${repo-release-url}</url>
         </repository>
         <snapshotRepository>
             <id>ztech-nexus</id>
             <name>Nexus Snapshots Repository</name>
-            <url>http://192.168.198.10:8081/nexus/content/repositories/snapshots</url>
+            <url>${repo-snapshot-url}</url>
         </snapshotRepository>
     </distributionManagement>
 
