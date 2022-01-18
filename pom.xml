@@ -14,6 +14,19 @@
     <version>0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <distributionManagement>
+        <repository>
+            <id>ztech-nexus</id>
+            <name>Nexus Releases Repository</name>
+            <url>${repo-release-url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>ztech-nexus</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>${repo-snapshot-url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
