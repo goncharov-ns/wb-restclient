@@ -33,6 +33,19 @@
         <url>https://github.com/goncharov-ns/wb-restclient/tree/main</url>
     </scm>
 
+    <distributionManagement>
+        <repository>
+            <id>ztech-nexus</id>
+            <name>Nexus Releases Repository</name>
+            <url>${repo-release-url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>ztech-nexus</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>${repo-snapshot-url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
