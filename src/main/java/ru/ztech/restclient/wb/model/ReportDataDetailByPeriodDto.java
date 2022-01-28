@@ -1,11 +1,15 @@
 package ru.ztech.restclient.wb.model;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import ru.ztech.restclient.wb.jackson.FlexiblePriceDeserializer;
 
 /**
  * Строка отчета о продажах по реализации
@@ -25,25 +29,25 @@ public class ReportDataDetailByPeriodDto {
     // ~ Переменные(свойства) класса ========================================================================
     @JsonProperty("realizationreport_id")
     /** Номер отчета */
-    private String realizationreportId;
+    private Long realizationreportId;
     /** Договор */
     @JsonProperty("suppliercontract_code")
     private String suppliercontractCode;
     /** Дата операции */
     @JsonProperty("rr_dt")
-    private String rrDt;
+    private LocalDate rrDt;
     /** Номер строки */
     @JsonProperty("rrd_id")
-    private String rrdId;
+    private Long rrdId;
     /** номер поставки */
     @JsonProperty("gi_id")
-    private String giId;
+    private Long giId;
     /** Предмет */
     @JsonProperty("subject_name")
     private String subjectName;
     /** Артикул */
-    @JsonProperty("NM_id")
-    private String NMId;
+    @JsonProperty("nm_id")
+    private Long NMId;
     /** Бренд */
     @JsonProperty("brand_name")
     private String brandName;
@@ -61,34 +65,23 @@ public class ReportDataDetailByPeriodDto {
     private String docTypeName;
     /** Количество */
     @JsonProperty("quantity")
-    private String quantity;
-    /** Ставка НДС */
-    @JsonProperty("nds")
-    private String nds;
-    /** Себестоимость Сумма */
-    @JsonProperty("cost_amount")
-    private String costAmount;
+    private Integer quantity;
     /** Цена розничная */
     @JsonProperty("retail_price")
-    private String retailPrice;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double retailPrice;
     /** Сумма продаж(Возвратов) */
     @JsonProperty("retail_amount")
-    private String retailAmount;
-    /** Сумма комиссии продаж */
-    @JsonProperty("retail_commission")
-    private String retailCommission;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double retailAmount;
     /** Согласованная скидка */
     @JsonProperty("sale_percent")
-    private String salePercent;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double salePercent;
     /** Процент комиссии */
     @JsonProperty("commission_percent")
-    private String commissionPercent;
-    /** Вознаграждение покупателю */
-    @JsonProperty("customer_reward")
-    private String customerReward;
-    /** Вознаграждение поставщику */
-    @JsonProperty("supplier_reward")
-    private String supplierReward;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double commissionPercent;
     /** Склад */
     @JsonProperty("office_name")
     private String officeName;
@@ -97,43 +90,82 @@ public class ReportDataDetailByPeriodDto {
     private String supplierOperName;
     /** Даты заказа */
     @JsonProperty("order_dt")
-    private String orderDt;
+    private LocalDate orderDt;
     /** Дата продажи */
     @JsonProperty("sale_dt")
-    private String saleDt;
+    private LocalDate saleDt;
     /** ШК */
     @JsonProperty("shk_id")
-    private String shkId;
+    private Long shkId;
     /** Цена розничная с учетом согласованной скидки */
     @JsonProperty("retail_price_withdisc_rub")
-    private String retailPriceWithdiscRub;
-    /** К перечислению поставщику */
-    @JsonProperty("for_pay")
-    private String forPay;
-    /** К перечислению поставщику НДС */
-    @JsonProperty("for_pay_nds")
-    private String forPayNds;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double retailPriceWithdiscRub;
     /** Кол-во доставок */
     @JsonProperty("delivery_amount")
-    private String deliveryAmount;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double deliveryAmount;
     /** Кол-во возвратов */
     @JsonProperty("return_amount")
-    private String returnAmount;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double returnAmount;
     /** Стоимость логистики */
     @JsonProperty("delivery_rub")
-    private String deliveryRub;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double deliveryRub;
     /** Тип коробов */
     @JsonProperty("gi_box_type_name")
     private String giBoxTypeName;
     /** Согласованный продуктовый дисконт */
     @JsonProperty("product_discount_for_report")
-    private String productDiscountForReport;
+    private Integer productDiscountForReport;
     /** Промокод */
     @JsonProperty("supplier_promo")
-    private String supplierPromo;
-    /** Скидка постоянного покупателя */
-    @JsonProperty("supplier_spp")
-    private String supplierSpp;
+    private Integer supplierPromo;
+    /** уникальный идентификатор строки отчета */
+    @JsonProperty("rid")
+    private Long rid;
+    /** ppvz_spp_prc = 0 */
+    @JsonProperty("ppvz_spp_prc")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double ppvzSppPrice;
+    /** ppvz_kvw_prc_base = 0.075 */
+    @JsonProperty("ppvz_kvw_prc_base")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double ppvzKvwPriceBase;
+    /** "ppvz_kvw_prc": 0.075 */
+    @JsonProperty("ppvz_kvw_prc")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double ppvzKvwPrice;
+    /** "ppvz_sales_commission": 51.63 */
+    @JsonProperty("ppvz_sales_commission")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double ppvzSalesCommission;
+    /** "ppvz_for_pay": 626.43 */
+    @JsonProperty("ppvz_for_pay")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double ppvzForPay;
+    /** "ppvz_reward": 0 */
+    @JsonProperty("ppvz_reward")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double ppvzReward;
+    /** "ppvz_vw": 51.63 */
+    @JsonProperty("ppvz_vw")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double ppvzVW;
+    /** "ppvz_vw_nds": 10.33 */
+    @JsonProperty("ppvz_vw_nds")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double ppvzVWNds;
+    /** "ppvz_office_id": 0 */
+    @JsonProperty("ppvz_office_id")
+    private Long ppvzOfficeId;
+    /** ppvz_office_name */
+    @JsonProperty("ppvz_office_name")
+    private String ppvzOfficeName;
+    /** "ppvz_supplier_id": 0 */
+    @JsonProperty("ppvz_supplier_id")
+    private Long ppvzSupplierId;
     
     // ~ Конструктор ========================================================================================
     

@@ -1,11 +1,15 @@
 package ru.ztech.restclient.wb.model;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import ru.ztech.restclient.wb.jackson.FlexiblePriceDeserializer;
 
 /**
  * Строка отчета Склад
@@ -25,7 +29,7 @@ public class ReportDataStocksDto {
     // ~ Переменные(свойства) класса ========================================================================
     /** дата и время обновления информации в сервисе */
     @JsonProperty("lastChangeDate")
-    private String lastChangeDate;
+    private LocalDateTime lastChangeDate;
     /** ваш артикул */
     @JsonProperty("supplierArticle")
     private String supplierArticle;
@@ -33,35 +37,35 @@ public class ReportDataStocksDto {
     @JsonProperty("techSize")
     private String techSize;
     /** штрих-код */
-    @JsonProperty("Barcode")
-    private String Barcode;
+    @JsonProperty("barcode")
+    private String barcode;
     /** кол-во, доступное для продажи */
-    @JsonProperty("Quantity")
-    private String quantity;
+    @JsonProperty("quantity")
+    private Integer quantity;
     /** договор поставки */
     @JsonProperty("isSupply")
-    private String isSupply;
+    private Boolean isSupply;
     /** договор реализации */
     @JsonProperty("isRealization")
-    private String isRealization;
+    private Boolean isRealization;
     /** кол-во полное */
     @JsonProperty("quantityFull")
-    private String quantityFull;
+    private Integer quantityFull;
     /** кол-во не в заказе */
     @JsonProperty("quantityNotInOrders")
-    private String quantityNotInOrders;
+    private Integer quantityNotInOrders;
     /** название склада */
     @JsonProperty("warehouseName")
     private String warehouseName;
     /** в пути к клиенту (штук) */
     @JsonProperty("inWayToClient")
-    private String inWayToClient;
+    private Integer inWayToClient;
     /** в пути от клиента (штук) */
     @JsonProperty("inWayFromClient")
-    private String inWayFromClient;
+    private Integer inWayFromClient;
     /** код WB */
-    @JsonProperty("nmid")
-    private String nmid;
+    @JsonProperty("nmId")
+    private Long nmId;
     /** предмет */
     @JsonProperty("subject")
     private String subject;
@@ -69,14 +73,21 @@ public class ReportDataStocksDto {
     @JsonProperty("category")
     private String category;
     /** кол-во дней на сайте */
-    @JsonProperty("DaysOnSite")
-    private String daysOnSite;
+    @JsonProperty("daysOnSite")
+    private Integer daysOnSite;
     /** бренд */
     @JsonProperty("brand")
     private String brand;
     /** код контракта */
     @JsonProperty("SCCode")
     private String scCode;
+    /** цена */
+    @JsonProperty("Price")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double price;
+    /** Скидка */
+    @JsonProperty("Discount")
+    private Integer discount;
     
     // ~ Управляемые объекты(Beans) =========================================================================
     

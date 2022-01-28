@@ -1,11 +1,17 @@
 package ru.ztech.restclient.wb.model;
 
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import ru.ztech.restclient.wb.jackson.FlexiblePriceDeserializer;
 
 /**
  * Строка отчета Продажи
@@ -24,14 +30,14 @@ public class ReportDataSalesDto {
     
     // ~ Переменные(свойства) класса ========================================================================
     /** номер документа */
-    @JsonProperty("Number")
+    @JsonProperty("number")
     private String number;
     /** дата продажи */
-    @JsonProperty("Date")
-    private String date;
+    @JsonProperty("date")
+    private LocalDateTime date;
     /** дата время обновления информации в сервисе */
     @JsonProperty("lastChangeDate")
-    private String lastChangeDate;
+    private LocalDateTime lastChangeDate;
     /** ваш артикул */
     @JsonProperty("supplierArticle")
     private String supplierArticle;
@@ -43,25 +49,27 @@ public class ReportDataSalesDto {
     private String barcode;
     /** кол-во */
     @JsonProperty("quantity")
-    private String quantity;
+    private Integer quantity;
     /** начальная розничная цена товара */
     @JsonProperty("totalPrice")
-    private String totalPrice;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double totalPrice;
     /** согласованная скидка на товар */
     @JsonProperty("discountPercent")
-    private String discountPercent;
+    private Integer discountPercent;
     /** договор поставки */
     @JsonProperty("isSupply")
-    private String isSupply;
+    private Boolean isSupply;
     /** договор реализации */
     @JsonProperty("isRealization")
-    private String isRealization;
+    private Boolean isRealization;
     /** номер исходного заказа ("Номер заказа" из сервиса "Заказы") */
     @JsonProperty("orderId")
     private String orderId;
     /** согласованный промокод */
     @JsonProperty("promoCodeDiscount")
-    private String promoCodeDiscount;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double promoCodeDiscount;
     /** склад отгрузки */
     @JsonProperty("warehouseName")
     private String warehouseName;
@@ -76,28 +84,31 @@ public class ReportDataSalesDto {
     private String regionName;
     /** номер поставки */
     @JsonProperty("incomeID")
-    private String incomeID;
+    private Long incomeID;
     /** уникальный идентификатор продажи/возврата (SXXXXXXXXXX — продажа, RXXXXXXXXXX - возврат, DXXXXXXXXXXX — доплата) */
     @JsonProperty("saleID")
     private String saleID;
     /** уникальный идентификатор позиции заказа */
     @JsonProperty("odid")
-    private String odid;
+    private Long odid;
     /** согласованная скидка постоянного покупателя (СПП) */
     @JsonProperty("spp")
-    private String spp;
+    private Integer spp;
     /** к перечислению поставщику */
-    @JsonProperty("forpay")
-    private String forpay;
+    @JsonProperty("forPay")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double forPay;
     /** фактическая цена из заказа (с учетом всех скидок, включая и от ВБ) */
-    @JsonProperty("finished_price")
-    private String finishedPrice;
+    @JsonProperty("finishedPrice")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double finishedPrice;
     /** цена, от которой считается вознаграждение поставщика forpay */
-    @JsonProperty("pricewithdisc")
-    private String pricewithdisc;
+    @JsonProperty("priceWithDisc")
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double priceWithDisc;
     /** код WB */
     @JsonProperty("nmId")
-    private String nmId;
+    private Long nmId;
     /** предмет */
     @JsonProperty("subject")
     private String subject;
@@ -109,7 +120,8 @@ public class ReportDataSalesDto {
     private String brand;
     /** 1-продажа сторнирована, 0 – не сторнирована */
     @JsonProperty("IsStorno")
-    private String isStorno;
+    @JsonFormat(shape = Shape.NUMBER)
+    private Boolean isStorno;
     
     // ~ Управляемые объекты(Beans) =========================================================================
     

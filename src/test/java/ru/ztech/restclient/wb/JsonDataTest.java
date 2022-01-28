@@ -14,7 +14,7 @@ import ru.ztech.restclient.wb.model.ReportDataDetailByPeriodDto;
 /**
  * JsonDataTest
  *
- * @since version(11-01-2022)
+ * @since 0.1 (11-01-2022)
  * @author Гончаров Никита 
  * 
  */

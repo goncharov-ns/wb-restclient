@@ -32,7 +32,7 @@ public interface IWbFacade {
 вызова. Таким образом для загрузки одного отчета может понадобится вызывать API до 
 тех пор, пока количество возвращаемых строк не станет равным нулю
      */
-    List<ReportDataDetailByPeriodDto> reportDetailByPeriod(String key, LocalDate dateFrom, LocalDate dateTo, int limit, int rrdid);
+    List<ReportDataDetailByPeriodDto> reportDetailByPeriod(String key, LocalDate dateFrom, LocalDate dateTo, int limit, long rrdid);
     
     /**
      * Продажи

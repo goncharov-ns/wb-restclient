@@ -14,14 +14,14 @@ import ru.ztech.restclient.wb.model.ReportDataSalesDto;
 import ru.ztech.restclient.wb.model.ReportDataStocksDto;
 
 /**
- * WbFacadeTest
+ * Тест для реального вызова АПИ
  *
  * @since 0.1 (11-01-2022)
  * @author Гончаров Никита 
  * 
  */
 @Disabled("Disabled until Run with Real ApiKey! Set as wb.api.key in System")
-public class WbFacadeTest {
+public class WbFacadeRealTest {
     
     private static final String KEY = System.getProperty("wb.api.key");
     private static final IWbFacade facade = new WbFacadeImpl(new WbConfigUrl());

@@ -49,8 +49,12 @@ public class WbFacadeImpl implements IWbFacade {
     }
     
     // ~ Методы =============================================================================================
+    RestOperations getRestOperations() {
+        return this.restOperations;
+    }
+    
     @Override
-    public List<ReportDataDetailByPeriodDto> reportDetailByPeriod(String key, LocalDate dateFrom, LocalDate dateTo, int limit, int rrdid) {
+    public List<ReportDataDetailByPeriodDto> reportDetailByPeriod(String key, LocalDate dateFrom, LocalDate dateTo, int limit, long rrdid) {
         final Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("apiKey", key);
         uriVariables.put("dateFrom", dateFrom);

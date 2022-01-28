@@ -1,11 +1,15 @@
 package ru.ztech.restclient.wb.model;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import ru.ztech.restclient.wb.jackson.FlexiblePriceDeserializer;
 
 /**
  * Строка отчета Заказы
@@ -25,13 +29,13 @@ public class ReportDataOrdersDto {
     // ~ Переменные(свойства) класса ========================================================================
     /** номер заказа */
     @JsonProperty("number")
-    private String number;
+    private Long number;
     /** дата заказа */
     @JsonProperty("date")
-    private String date;
+    private LocalDateTime date;
     /** дата время обновления информации в сервисе */
     @JsonProperty("lastChangeDate")
-    private String lastChangeDate;
+    private LocalDateTime lastChangeDate;
     /** ваш артикул */
     @JsonProperty("supplierArticle")
     private String supplierArticle;
@@ -43,13 +47,14 @@ public class ReportDataOrdersDto {
     private String barcode;
     /** кол-во */
     @JsonProperty("quantity")
-    private String quantity;
+    private Integer quantity;
     /** цена до согласованной скидки/промо/спп */
     @JsonProperty("totalPrice")
-    private String totalPrice;
+    @JsonDeserialize(using = FlexiblePriceDeserializer.class)
+    private Double totalPrice;
     /** согласованный итоговый дисконт. */
     @JsonProperty("discountPercent")
-    private String discountPercent;
+    private Integer discountPercent;
     /** склад отгрузки */
     @JsonProperty("warehouseName")
     private String warehouseName;
@@ -58,13 +63,13 @@ public class ReportDataOrdersDto {
     private String oblast;
     /** номер поставки */
     @JsonProperty("incomeID")
-    private String incomeID;
+    private Long incomeID;
     /** уникальный идентификатор позиции заказа */
     @JsonProperty("odid")
-    private String odid;
+    private Long odid;
     /** Код WB */
-    @JsonProperty("nmid")
-    private String nmid;
+    @JsonProperty("nmId")
+    private Long nmid;
     /** предмет */
     @JsonProperty("subject")
     private String subject;
@@ -74,12 +79,12 @@ public class ReportDataOrdersDto {
     /** бренд */
     @JsonProperty("brand")
     private String brand;
-    /** признак отмены заказа (0 – отмены не было, 1 – отмена была */
-    @JsonProperty("is_cancel")
-    private String isCancel;
+    /** признак отмены заказа */
+    @JsonProperty("isCancel")
+    private Boolean isCancel;
     /** дата отмены заказа */
     @JsonProperty("cancel_dt")
-    private String cancelDt;
+    private LocalDateTime cancelDt;
     
     // ~ Управляемые объекты(Beans) =========================================================================
     
