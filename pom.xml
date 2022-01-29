@@ -10,7 +10,7 @@
     
     <groupId>ru.z-tech</groupId>
     <artifactId>wb-restclient</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
     
     <licenses>
@@ -43,7 +43,7 @@
             <name>Nexus Snapshots Repository</name>
             <url>${repo-snapshot-url}</url>
         </snapshotRepository>
-    </distributionManagement>>
+    </distributionManagement>
 	
     <dependencies>
 		<dependency>
