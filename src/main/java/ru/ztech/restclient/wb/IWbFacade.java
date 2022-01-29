@@ -31,6 +31,8 @@ public interface IWbFacade {
 передавать максимальное значение rrdid полученное в результате предыдущего 
 вызова. Таким образом для загрузки одного отчета может понадобится вызывать API до 
 тех пор, пока количество возвращаемых строк не станет равным нулю
+     *
+     * @return Список объектов отчета, список не <code>NULL</code>
      */
     List<ReportDataDetailByPeriodDto> reportDetailByPeriod(String key, LocalDate dateFrom, LocalDate dateTo, int limit, long rrdid);
     
@@ -41,6 +43,8 @@ public interface IWbFacade {
      * @param dateFrom - начальная дата периода. Например, если dateFrom = 2020-07-06, то в 
 результате вызова API будет получен отчет за неделю от 06 по 12 июля 2020 года
      * @param flag - Если 0 (или не указан в строке запроса), при вызове API возвращаются данные у которых значение поля lastChangeDate
+     * 
+     * @return Список объектов отчета, список не <code>NULL</code>
      */
     List<ReportDataSalesDto> reportDataSales(String key, LocalDate dateFrom, int flag);
     
@@ -51,6 +55,8 @@ public interface IWbFacade {
      * @param dateFrom - начальная дата периода. Например, если dateFrom = 2020-07-06, то в 
 результате вызова API будет получен отчет за неделю от 06 по 12 июля 2020 года
      * @param flag - Если 0 (или не указан в строке запроса), при вызове API возвращаются данные у которых значение поля lastChangeDate
+     * 
+     * @return Список объектов отчета, список не <code>NULL</code>
      */
     List<ReportDataOrdersDto> reportDataOrders(String key, LocalDate dateFrom, int flag);
     
@@ -60,6 +66,8 @@ public interface IWbFacade {
      * @param key - ключ, выдаваемый поставщику
      * @param dateFrom - начальная дата периода. Например, если dateFrom = 2020-07-06, то в 
 результате вызова API будет получен отчет за неделю от 06 по 12 июля 2020 года
+     *
+     * @return Список объектов отчета, список не <code>NULL</code>
      */
     List<ReportDataStocksDto> reportDataStocks(String key, LocalDate dateFrom);
 }

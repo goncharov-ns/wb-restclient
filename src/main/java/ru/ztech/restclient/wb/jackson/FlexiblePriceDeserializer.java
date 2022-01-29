@@ -17,10 +17,11 @@ public class FlexiblePriceDeserializer extends JsonDeserializer<Double> {
     
     @Override
     public Double deserialize(JsonParser parser, DeserializationContext context) throws IOException {
-        String floatString = parser.getText();
+        final String floatString = parser.getText();
         if (floatString.contains(",")) {
-            floatString = floatString.replace(",", ".");
+            return Double.valueOf(floatString.replace(",", "."));
+        } else {
+            return Double.valueOf(floatString);
         }
-        return Double.valueOf(floatString);
     }
 }
