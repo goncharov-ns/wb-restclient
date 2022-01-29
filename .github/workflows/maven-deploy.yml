@@ -17,7 +17,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
         server-id: ztech-nexus
-        repo-release-url: https://oss.sonatype.org/content/repositories/snapshots
+        repo-release-url: https://oss.sonatype.org/service/local/staging/deploy/maven2
+        repo-snapshot-url: https://oss.sonatype.org/content/repositories/snapshots
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
