@@ -10,7 +10,7 @@
     
     <groupId>ru.z-tech</groupId>
     <artifactId>wb-restclient</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
     <packaging>jar</packaging>
     
     <licenses>

@@ -11,11 +11,21 @@ import ru.ztech.restclient.wb.model.ReportDataStocksDto;
 /**
  * Фасад wildberries сервисов
  *
+ * @version 0.3
  * @since 0.1 (11-01-2022)
  * @author Гончаров Никита 
  * 
  */
 public interface IWbFacade {
+    
+    /**
+     * Проверка что ключ валидный 
+     * 
+     * @param key - ключ, выдаваемый поставщику
+     * @return true - ключ валидный
+     * @throws WbApiException - Ошибки сети, сервера не связанные с авторизацией
+     */
+    boolean isValidApiKey(String key) throws WbApiException;
     
     /**
      * Отчет о продажах по реализации
@@ -34,7 +44,7 @@ public interface IWbFacade {
      *
      * @return Список объектов отчета, список не <code>NULL</code>
      */
-    List<ReportDataDetailByPeriodDto> reportDetailByPeriod(String key, LocalDate dateFrom, LocalDate dateTo, int limit, long rrdid);
+    List<ReportDataDetailByPeriodDto> reportDetailByPeriod(String key, LocalDate dateFrom, LocalDate dateTo, int limit, long rrdid) throws WbApiException;
     
     /**
      * Продажи
@@ -46,7 +56,7 @@ public interface IWbFacade {
      * 
      * @return Список объектов отчета, список не <code>NULL</code>
      */
-    List<ReportDataSalesDto> reportDataSales(String key, LocalDate dateFrom, int flag);
+    List<ReportDataSalesDto> reportDataSales(String key, LocalDate dateFrom, int flag) throws WbApiException;
     
     /**
      * Заказы
@@ -58,7 +68,7 @@ public interface IWbFacade {
      * 
      * @return Список объектов отчета, список не <code>NULL</code>
      */
-    List<ReportDataOrdersDto> reportDataOrders(String key, LocalDate dateFrom, int flag);
+    List<ReportDataOrdersDto> reportDataOrders(String key, LocalDate dateFrom, int flag) throws WbApiException;
     
     /**
      * Склад
@@ -69,5 +79,5 @@ public interface IWbFacade {
      *
      * @return Список объектов отчета, список не <code>NULL</code>
      */
-    List<ReportDataStocksDto> reportDataStocks(String key, LocalDate dateFrom);
+    List<ReportDataStocksDto> reportDataStocks(String key, LocalDate dateFrom) throws WbApiException;
 }

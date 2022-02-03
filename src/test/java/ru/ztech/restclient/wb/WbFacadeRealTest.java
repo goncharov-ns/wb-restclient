@@ -27,7 +27,7 @@ public class WbFacadeRealTest {
     private static final IWbFacade facade = new WbFacadeImpl(new WbConfigUrl());
     
     @Test
-    void loadReportDetailByPeriodSuccessReal() {
+    void loadReportDetailByPeriodSuccessReal() throws WbApiException {
         List<ReportDataDetailByPeriodDto> list = facade.reportDetailByPeriod(KEY, LocalDate.parse("2021-12-01"), LocalDate.now(), 0, 0);
         System.out.println("Result:\n");
         for (ReportDataDetailByPeriodDto reportSaleBySalesDto : list) {
@@ -36,7 +36,7 @@ public class WbFacadeRealTest {
     }
     
     @Test
-    void loadReportDataSalesSuccessReal() {
+    void loadReportDataSalesSuccessReal() throws WbApiException {
         List<ReportDataSalesDto> list = facade.reportDataSales(KEY, LocalDate.parse("2021-12-01"), 0);
         System.out.println("Result:\n");
         for (ReportDataSalesDto reportSaleBySalesDto : list) {
@@ -45,7 +45,7 @@ public class WbFacadeRealTest {
     }
     
     @Test
-    void loadReportDataOrdersSuccessReal() {
+    void loadReportDataOrdersSuccessReal() throws WbApiException {
         List<ReportDataOrdersDto> list = facade.reportDataOrders(KEY, LocalDate.parse("2021-12-01"), 0);
         System.out.println("Result:\n");
         for (ReportDataOrdersDto reportSaleBySalesDto : list) {
@@ -54,7 +54,7 @@ public class WbFacadeRealTest {
     }
     
     @Test
-    void loadReportDataStocksSuccessReal() {
+    void loadReportDataStocksSuccessReal() throws WbApiException {
         List<ReportDataStocksDto> list = facade.reportDataStocks(KEY, LocalDate.parse("2021-12-01"));
         System.out.println("Result:\n");
         for (ReportDataStocksDto reportSaleBySalesDto : list) {

@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
-import org.springframework.web.client.RestTemplate;
 
 import ru.ztech.restclient.wb.IWbFacade;
 import ru.ztech.restclient.wb.model.ReportDataDetailByPeriodDto;
@@ -40,7 +39,7 @@ public class WbFacadeTest {
     
     @BeforeAll
     public static void init() throws Exception {
-        mockServer = MockRestServiceServer.createServer((RestTemplate) ((WbFacadeImpl) facade).getRestOperations());
+        mockServer = MockRestServiceServer.createServer(((WbFacadeImpl) facade).getRestTemplate());
     }
     
     private void mockRest(String stub, String url, Object... params) throws Exception {
