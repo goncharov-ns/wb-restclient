@@ -11,14 +11,17 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
+import org.springframework.web.client.HttpClientErrorException.TooManyRequests;
 import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.ztech.restclient.wb.IWbFacade;
 import ru.ztech.restclient.wb.WbApiException;
 import ru.ztech.restclient.wb.model.ReportDataDetailByPeriodDto;
@@ -33,6 +36,7 @@ import ru.ztech.restclient.wb.model.ReportDataStocksDto;
  * @author Гончаров Никита 
  * 
  */
+@Slf4j
 public class WbFacadeImpl implements IWbFacade {
     
     // ~ Статические поля/инициализации =====================================================================
@@ -49,6 +53,7 @@ public class WbFacadeImpl implements IWbFacade {
     public WbFacadeImpl(WbConfigUrl configUrl) {
         this.configUrl = configUrl;
         final List<HttpMessageConverter<?>> messageConverters = new ArrayList<>(1);
+        messageConverters.add(new StringHttpMessageConverter());
         messageConverters.add(new MappingJackson2HttpMessageConverter());
         this.restOperations = new RestTemplate(messageConverters);
     }
@@ -138,8 +143,14 @@ public class WbFacadeImpl implements IWbFacade {
         uriVariables.put("dateFrom", LocalDateTime.now());
         uriVariables.put("flag", 1);
         try {
-            this.restOperations.getForEntity(this.configUrl.getReportOrders(), String.class, uriVariables);
+            log.trace("Ссылка для проверка ключа " + this.configUrl.getReportOrders());
+            final ResponseEntity<String> entity = this.restOperations.getForEntity(this.configUrl.getReportOrders(), String.class, uriVariables);
+            log.trace("Ответ от WB " + entity);
+        } catch (TooManyRequests e) {
+            log.trace("return true потому что получили TooManyRequests", e);
+            return true;
         } catch (BadRequest | Unauthorized e) {
+            log.trace("return false потому что получили BadRequest | Unauthorized", e);
             return false;
         } catch (Exception e) {
             throw handlerException(e);

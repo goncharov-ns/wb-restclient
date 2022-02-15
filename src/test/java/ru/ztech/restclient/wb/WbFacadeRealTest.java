@@ -27,6 +27,12 @@ public class WbFacadeRealTest {
     private static final IWbFacade facade = new WbFacadeImpl(new WbConfigUrl());
     
     @Test
+    void validateReal() throws WbApiException {
+        System.out.println("Good key " + facade.isValidApiKey(KEY));
+        System.out.println("Bad key " + facade.isValidApiKey("blalbla"));
+    }
+    
+    @Test
     void loadReportDetailByPeriodSuccessReal() throws WbApiException {
         List<ReportDataDetailByPeriodDto> list = facade.reportDetailByPeriod(KEY, LocalDate.parse("2021-12-01"), LocalDate.now(), 0, 0);
         System.out.println("Result:\n");

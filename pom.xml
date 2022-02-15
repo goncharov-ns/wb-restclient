@@ -10,7 +10,7 @@
     
     <groupId>ru.z-tech</groupId>
     <artifactId>wb-restclient</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
     
     <licenses>
@@ -45,6 +45,11 @@
         </snapshotRepository>
     </distributionManagement>
 	
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.jdk.version>1.8</project.build.jdk.version>
+    </properties>
+	
     <dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -57,6 +62,10 @@
 		<dependency>
 		    <groupId>com.fasterxml.jackson.datatype</groupId>
 		    <artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
 		</dependency>
     	
         <dependency>
