@@ -1,6 +1,7 @@
 package ru.ztech.restclient.wb;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
@@ -43,7 +44,7 @@ public class WbFacadeRealTest {
     
     @Test
     void loadReportDataSalesSuccessReal() throws WbApiException {
-        List<ReportDataSalesDto> list = facade.reportDataSales(KEY, LocalDate.parse("2021-12-01"), 0);
+        List<ReportDataSalesDto> list = facade.reportDataSales(KEY, LocalDateTime.parse("2021-12-01"), 0);
         System.out.println("Result:\n");
         for (ReportDataSalesDto reportSaleBySalesDto : list) {
             System.out.println("\t" + reportSaleBySalesDto);
@@ -52,7 +53,7 @@ public class WbFacadeRealTest {
     
     @Test
     void loadReportDataOrdersSuccessReal() throws WbApiException {
-        List<ReportDataOrdersDto> list = facade.reportDataOrders(KEY, LocalDate.parse("2021-12-01"), 0);
+        List<ReportDataOrdersDto> list = facade.reportDataOrders(KEY, LocalDateTime.parse("2021-12-01"), 0);
         System.out.println("Result:\n");
         for (ReportDataOrdersDto reportSaleBySalesDto : list) {
             System.out.println("\t" + reportSaleBySalesDto);
@@ -61,7 +62,7 @@ public class WbFacadeRealTest {
     
     @Test
     void loadReportDataStocksSuccessReal() throws WbApiException {
-        List<ReportDataStocksDto> list = facade.reportDataStocks(KEY, LocalDate.parse("2021-12-01"));
+        List<ReportDataStocksDto> list = facade.reportDataStocks(KEY, LocalDateTime.parse("2021-12-01"));
         System.out.println("Result:\n");
         for (ReportDataStocksDto reportSaleBySalesDto : list) {
             System.out.println("\t" + reportSaleBySalesDto);

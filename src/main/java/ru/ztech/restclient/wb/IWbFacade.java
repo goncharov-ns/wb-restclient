@@ -1,6 +1,7 @@
 package ru.ztech.restclient.wb;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import ru.ztech.restclient.wb.model.ReportDataDetailByPeriodDto;
@@ -23,7 +24,7 @@ public interface IWbFacade {
      * 
      * @param key - ключ, выдаваемый поставщику
      * @return true - ключ валидный
-     * @throws WbApiException - Ошибки сети, сервера не связанные с авторизацией
+     * @throws WbApiException - Ошибки сети/сервера не связанные с авторизацией
      */
     boolean isValidApiKey(String key) throws WbApiException;
     
@@ -43,6 +44,7 @@ public interface IWbFacade {
 тех пор, пока количество возвращаемых строк не станет равным нулю
      *
      * @return Список объектов отчета, список не <code>NULL</code>
+     * @throws WbApiException - Ошибки сети/сервера/авторизации
      */
     List<ReportDataDetailByPeriodDto> reportDetailByPeriod(String key, LocalDate dateFrom, LocalDate dateTo, int limit, long rrdid) throws WbApiException;
     
@@ -55,8 +57,9 @@ public interface IWbFacade {
      * @param flag - Если 0 (или не указан в строке запроса), при вызове API возвращаются данные у которых значение поля lastChangeDate
      * 
      * @return Список объектов отчета, список не <code>NULL</code>
+     * @throws WbApiException - Ошибки сети/сервера/авторизации
      */
-    List<ReportDataSalesDto> reportDataSales(String key, LocalDate dateFrom, int flag) throws WbApiException;
+    List<ReportDataSalesDto> reportDataSales(String key, LocalDateTime dateFrom, int flag) throws WbApiException;
     
     /**
      * Заказы
@@ -67,8 +70,9 @@ public interface IWbFacade {
      * @param flag - Если 0 (или не указан в строке запроса), при вызове API возвращаются данные у которых значение поля lastChangeDate
      * 
      * @return Список объектов отчета, список не <code>NULL</code>
+     * @throws WbApiException - Ошибки сети/сервера/авторизации
      */
-    List<ReportDataOrdersDto> reportDataOrders(String key, LocalDate dateFrom, int flag) throws WbApiException;
+    List<ReportDataOrdersDto> reportDataOrders(String key, LocalDateTime dateFrom, int flag) throws WbApiException;
     
     /**
      * Склад
@@ -78,6 +82,7 @@ public interface IWbFacade {
 результате вызова API будет получен отчет за неделю от 06 по 12 июля 2020 года
      *
      * @return Список объектов отчета, список не <code>NULL</code>
+     * @throws WbApiException - Ошибки сети/сервера/авторизации
      */
-    List<ReportDataStocksDto> reportDataStocks(String key, LocalDate dateFrom) throws WbApiException;
+    List<ReportDataStocksDto> reportDataStocks(String key, LocalDateTime dateFrom) throws WbApiException;
 }
