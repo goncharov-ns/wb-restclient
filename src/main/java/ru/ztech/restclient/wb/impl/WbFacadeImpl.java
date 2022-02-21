@@ -84,7 +84,7 @@ public class WbFacadeImpl implements IWbFacade {
     }
 
     @Override
-    public List<ReportDataSalesDto> reportDataSales(String key, LocalDate dateFrom, int flag) throws WbApiException {
+    public List<ReportDataSalesDto> reportDataSales(String key, LocalDateTime dateFrom, int flag) throws WbApiException {
         final Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("apiKey", key);
         uriVariables.put("dateFrom", dateFrom);
@@ -102,7 +102,7 @@ public class WbFacadeImpl implements IWbFacade {
     }
 
     @Override
-    public List<ReportDataOrdersDto> reportDataOrders(String key, LocalDate dateFrom, int flag) throws WbApiException {
+    public List<ReportDataOrdersDto> reportDataOrders(String key, LocalDateTime dateFrom, int flag) throws WbApiException {
         final Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("apiKey", key);
         uriVariables.put("dateFrom", dateFrom);
@@ -120,7 +120,7 @@ public class WbFacadeImpl implements IWbFacade {
     }
 
     @Override
-    public List<ReportDataStocksDto> reportDataStocks(String key, LocalDate dateFrom) throws WbApiException {
+    public List<ReportDataStocksDto> reportDataStocks(String key, LocalDateTime dateFrom) throws WbApiException {
         final Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("apiKey", key);
         uriVariables.put("dateFrom", dateFrom);

@@ -6,6 +6,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 import java.nio.charset.Charset;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -35,6 +36,7 @@ public class WbFacadeTest {
     private static final IWbFacade facade = new WbFacadeImpl(new WbConfigUrl());
     private static final String P_KEY = "api-key";
     private static final LocalDate P_DATE_FROM = LocalDate.parse("2021-12-01");
+    private static final LocalDateTime P_DATETIME_FROM = LocalDateTime.parse("2021-12-01T00:00:00");
     private static MockRestServiceServer mockServer;
     
     @BeforeAll
@@ -75,8 +77,8 @@ public class WbFacadeTest {
 
     @Test
     void loadReportDataSalesSuccessReal() throws Exception {
-        mockRest("sales", "/sales?dateFrom={dateFrom}&flag={flag}&key={apiKey}", P_DATE_FROM, 0, P_KEY);
-        List<ReportDataSalesDto> list = facade.reportDataSales(P_KEY, P_DATE_FROM, 0);
+        mockRest("sales", "/sales?dateFrom={dateFrom}&flag={flag}&key={apiKey}", P_DATETIME_FROM, 0, P_KEY);
+        List<ReportDataSalesDto> list = facade.reportDataSales(P_KEY, P_DATETIME_FROM, 0);
         System.out.println("Result:\n");
         for (ReportDataSalesDto reportSaleBySalesDto : list) {
             System.out.println("\t" + reportSaleBySalesDto);
@@ -86,8 +88,8 @@ public class WbFacadeTest {
     
     @Test
     void loadReportDataOrdersSuccessReal() throws Exception {
-        mockRest("orders", "/orders?dateFrom={dateFrom}&flag={flag}&key={apiKey}", P_DATE_FROM, 0, P_KEY);
-        List<ReportDataOrdersDto> list = facade.reportDataOrders(P_KEY, P_DATE_FROM, 0);
+        mockRest("orders", "/orders?dateFrom={dateFrom}&flag={flag}&key={apiKey}", P_DATETIME_FROM, 0, P_KEY);
+        List<ReportDataOrdersDto> list = facade.reportDataOrders(P_KEY, P_DATETIME_FROM, 0);
         System.out.println("Result:\n");
         for (ReportDataOrdersDto reportSaleBySalesDto : list) {
             System.out.println("\t" + reportSaleBySalesDto);
@@ -97,8 +99,8 @@ public class WbFacadeTest {
     
     @Test
     void loadReportDataStocksSuccessReal() throws Exception {
-        mockRest("stocks", "/stocks?dateFrom={dateFrom}&key={apiKey}", P_DATE_FROM, P_KEY);
-        List<ReportDataStocksDto> list = facade.reportDataStocks(P_KEY, P_DATE_FROM);
+        mockRest("stocks", "/stocks?dateFrom={dateFrom}&key={apiKey}", P_DATETIME_FROM, P_KEY);
+        List<ReportDataStocksDto> list = facade.reportDataStocks(P_KEY, P_DATETIME_FROM);
         System.out.println("Result:\n");
         for (ReportDataStocksDto reportSaleBySalesDto : list) {
             System.out.println("\t" + reportSaleBySalesDto);
